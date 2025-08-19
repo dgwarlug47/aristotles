@@ -46,6 +46,26 @@ class CharacterDatabase {
     addCharacter(character) {
         this.characters.push(character);
         console.log(`✅ Added character: ${character.name}`);
+        this.displayCharacterInTable(character);
+    }
+    // Method to display character data in the HTML table
+    displayCharacterInTable(character) {
+        // Find table and update the data row with character info
+        const dataRow = document.querySelector('table tr:nth-child(2)');
+        if (dataRow) {
+            dataRow.innerHTML = `
+                <td>${character.hamartia}</td>
+                <td>${character.context}</td>
+                <td>${character.phronesis}</td>
+                <td>${character.phronesisTrajectory}</td>
+                <td>${character.telos || 'Unknown'}</td>
+            `;
+        }
+        // Also update the character name in the title
+        const titleElement = document.querySelector('.main-title');
+        if (titleElement) {
+            titleElement.textContent = character.name;
+        }
     }
     // Method to get all characters (for future use)
     getCharacters() {
