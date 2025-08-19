@@ -90,6 +90,13 @@ class CharacterDatabase {
         if (titleElement) {
             titleElement.textContent = character.name;
         }
+
+        // Update the header image if character has one
+        const imageElement = document.querySelector('.header-image') as HTMLImageElement;
+        if (imageElement && character.image) {
+            imageElement.src = character.image;
+            imageElement.alt = `${character.name} - Character Portrait`;
+        }
     }
 
     // Method to get all characters (for future use)
@@ -117,6 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
         context: 'royal court',
         phronesis: 'medium',
         phronesisTrajectory: 'decreasing',
+        telos: 'tragic revenge',
+        image: 'https://static.wikia.nocookie.net/characters/images/e/e9/Katara.jpg/revision/latest?cb=20170921222457',
         tags: ['tragedy', 'prince', 'revenge']
     });
 
@@ -127,6 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
         context: 'political power',
         phronesis: 'low',
         phronesisTrajectory: 'decreasing',
+        telos: 'tyrannical rule',
+        image: 'https://static.wikia.nocookie.net/characters/images/e/e9/Katara.jpg/revision/latest?cb=20170921222457',
         tags: ['tragedy', 'king', 'prophecy']
     });
 
