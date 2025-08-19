@@ -1,18 +1,73 @@
-# AWS DynamoDB Python Client
+# Aristotelian Character Database
 
-A comprehensive Python library for interacting with AWS DynamoDB, featuring read/write operations, batch processing, querying, and real-world examples.
+A comprehensive system for analyzing literary and historical characters through Aristotelian philosophy, featuring DynamoDB backend and TypeScript frontend.
+
+## 🚀 Quick Start - Running the Application
+
+### 1. Run the Frontend (TypeScript UI) ✅
+```bash
+# Navigate to the src folder
+cd src
+
+# Compile TypeScript (if you made changes)
+tsc main.ts --target ES2020
+
+# Open the application in your browser
+open index.html
+# OR on Linux: xdg-open index.html
+# OR manually open: file:///Users/davi/Desktop/Code/aristotles/src/index.html
+```
+
+**What you'll see:**
+- 🏛️ Greek-styled interface with classical design
+- 📊 Dynamic character table showing Macbeth's data (last character added)
+- 🖼️ Character image that updates based on the data
+- 🎭 Interactive text blocks with philosophical content
+
+### 2. Run the Python Backend (DynamoDB) ✅
+```bash
+# Configure AWS credentials first
+aws configure
+
+# Run the minimal DynamoDB example
+python minimal.py
+
+# Or run more comprehensive examples
+python examples.py
+```
+
+### 3. Development Workflow
+```bash
+# If you modify TypeScript code:
+cd src
+tsc main.ts --target ES2020
+# Then refresh your browser
+
+# If you modify Python code:
+python your_modified_file.py
+
+# Check browser console (F12) for debug info
+```
+
+**Current Status:** ✅ **Both frontend and backend are working correctly!**
+
+---
 
 ## Features
 
+- 🏛️ **Greek Classical UI**: Beautiful Aristotelian-themed interface
+- 📊 **Dynamic Character Display**: TypeScript-powered character data visualization
 - 🔧 **Easy Setup**: Simple configuration and connection management
-- 📝 **CRUD Operations**: Create, Read, Update, Delete items
+- 📝 **CRUD Operations**: Create, Read, Update, Delete items in DynamoDB
 - 📊 **Batch Operations**: Efficient batch writing for multiple items
 - 🔍 **Query & Scan**: Powerful querying and scanning capabilities
 - 🛡️ **Error Handling**: Comprehensive error handling and logging
-- 📚 **Real-world Examples**: User management, product catalog, activity logging
+- 📚 **Real-world Examples**: Character management with philosophical analysis
 - 🔄 **Type Conversion**: Automatic handling of DynamoDB data types
 
-## Installation
+## AWS DynamoDB Backend
+
+### Installation
 
 1. Install Python dependencies:
 ```bash
