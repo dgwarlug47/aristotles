@@ -4,6 +4,10 @@
 # Focus directory
 Focus/
 
+# Node.js - DB folder dependencies
+src/DB/node_modules/
+src/DB/dist/
+
 # Python
 __pycache__/
 *.py[cod]

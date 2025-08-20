@@ -1,0 +1,22 @@
+{
+  "name": "aristotles-db",
+  "version": "1.0.0",
+  "description": "DynamoDB TypeScript implementation for Aristotles character management",
+  "main": "dynamodb.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/dynamodb.js",
+    "dev": "ts-node dynamodb.ts",
+    "simple": "ts-node simple-example.ts",
+    "create-table": "ts-node table-creator.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.600.0",
+    "@aws-sdk/lib-dynamodb": "^3.600.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0",
+    "ts-node": "^10.9.0"
+  }
+}
