@@ -8,6 +8,9 @@ Focus/
 src/DB/node_modules/
 src/DB/dist/
 
+src/AI/node_modules
+src/AI/dist
+
 # Python
 __pycache__/
 *.py[cod]
