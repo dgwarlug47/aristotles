@@ -206,6 +206,7 @@ async function main() {
 
     // Create sample character (similar to minimal.py)
     const hamlet: Character = {
+      id: 'hamlet-001',
       characterName: 'Hamlet',
       hamartia: 'indecision',
       context: 'Danish prince seeking revenge for his father\'s murder',
@@ -237,6 +238,7 @@ async function main() {
     
     // Add another character
     const macbeth: Character = {
+      id: 'macbeth-001',
       characterName: 'Macbeth',
       hamartia: 'ambition',
       context: 'Scottish general corrupted by prophecy and ambition',

@@ -8,6 +8,7 @@
 import CharacterAnalyzer from './character-analyzer';
 import CharacterDB from '../DB/dynamodb';
 import { Character } from '../Models/character';
+import {movieCharacters} from './Upstream/movies.js'
 
 async function testSingleCharacter() {
   console.log('🧪 Testing Single Character Analysis\n');
@@ -16,7 +17,7 @@ async function testSingleCharacter() {
     const analyzer = new CharacterAnalyzer();
     
     // Analyze a character
-    const characterName = 'Macbeth';
+    const characterName = movieCharacters[0];
     console.log(`Analyzing: ${characterName}`);
     
     const character = await analyzer.analyzeCharacter(characterName);
@@ -72,7 +73,7 @@ async function testWithDatabase() {
     const db = new CharacterDB();
     
     // Generate character data with AI
-    const character = await analyzer.analyzeCharacter('Odysseus');
+    const character = await analyzer.analyzeCharacter(movieCharacters[0]);
     
     if (character) {
       console.log('✅ Character analyzed successfully');

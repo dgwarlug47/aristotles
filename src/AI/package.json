@@ -7,6 +7,7 @@
     "build": "tsc",
     "dev": "ts-node character-analyzer.ts",
     "test": "ts-node test-analyzer.ts",
+    "test:offline": "ts-node test-analyzer-offline.ts",
     "integration": "ts-node ai-database-integration.ts"
   },
   "dependencies": {

@@ -1,13 +1,13 @@
 export interface Character {
     id: string;
-    name: string;
+    characterName: string;
     hamartia: string;
     context: string;
-    phronesis: 'low' | 'medium' | 'high';
+    phronesisLevel: 'low' | 'medium' | 'high';
     phronesisTrajectory: 'increasing' | 'decreasing' | 'constant';
     telos?: string;
     image?: string;
     tags: string[];
-    greatestVictory?: string; // Optional field for future use;
+    greatestWin?: string; // Optional field for future use;
     greatestDefeat?: string; // Optional field for future use;
 }

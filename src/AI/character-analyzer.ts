@@ -88,6 +88,7 @@ Be specific, insightful, and philosophically grounded in your analysis.`
       
       // Validate and structure the response
       const character: Character = {
+        id: characterData.id || `char-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         characterName: characterData.characterName || characterName,
         hamartia: characterData.hamartia || 'Unknown flaw',
         context: characterData.context || 'Unknown context',
@@ -136,11 +137,12 @@ Return your analysis as a JSON object with the exact structure I specified.`;
    */
   private createFallbackCharacter(characterName: string, error: any): Character {
     return {
+      id: `fallback-${Date.now()}`,
       characterName,
       hamartia: 'Analysis failed - Unable to determine tragic flaw',
       context: 'Unknown context due to analysis error',
-      phronesisLevel: 'unknown',
-      phronesisTrajectory: 'unknown',
+      phronesisLevel: 'medium',
+      phronesisTrajectory: 'constant',
       telos: 'Unable to determine purpose',
       greatestWin: 'Analysis incomplete',
       greatestDefeat: `AI analysis failed: ${error.message || 'Unknown error'}`,
