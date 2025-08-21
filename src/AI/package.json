@@ -1,0 +1,21 @@
+{
+  "name": "aristotles-ai",
+  "version": "1.0.0",
+  "description": "AI-powered character analysis using OpenAI API for Aristotelian character traits",
+  "main": "character-analyzer.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node character-analyzer.ts",
+    "test": "ts-node test-analyzer.ts",
+    "integration": "ts-node ai-database-integration.ts"
+  },
+  "dependencies": {
+    "openai": "^4.52.0",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0",
+    "ts-node": "^10.9.0"
+  }
+}
