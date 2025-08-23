@@ -11,6 +11,8 @@ src/DB/dist/
 src/AI/node_modules
 src/AI/dist
 
+src/node_modules
+
 # Python
 __pycache__/
 *.py[cod]
