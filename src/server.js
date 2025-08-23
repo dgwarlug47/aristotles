@@ -79,7 +79,7 @@ class MockCharacterDB {
 }
 
 // Initialize mock database
-const characterDB = new CharacterDB()
+const characterDB = new MockCharacterDB()
 
 // Routes
 app.get('/', (req, res) => {
