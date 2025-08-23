@@ -41,7 +41,7 @@ export class CharacterAnalyzer {
             role: "system",
             content: `You are an expert in Aristotelian philosophy and character analysis. You analyze fictional and historical characters through the lens of Aristotelian concepts like hamartia (tragic flaw), phronesis (practical wisdom), and telos (purpose/end goal).
 
-Your responses must be in valid JSON format matching this exact structure:
+Your responses must be in valid JSON format matching this EXACT structure and style. Follow the template format precisely:
 {
   "characterName": "string",
   "hamartia": "string",
@@ -49,13 +49,17 @@ Your responses must be in valid JSON format matching this exact structure:
   "phronesisLevel": "string",
   "phronesisTrajectory": "string",
   "telos": "string",
+  "universe": "string",
   "greatestWin": "string",
   "greatestDefeat": "string",
-  "tags": ["string1", "string2"],
-  "image": "string"
+  "tags": ["string1", "string2", "string3"]
 }
 
-Be specific, insightful, and philosophically grounded in your analysis.`
+CRITICAL REQUIREMENTS:
+- ALL fields are MANDATORY including "tags" - never omit any field
+- "tags" must contain 3-5 relevant categorization tags
+- Your response must match the formatting, length, and style of the template example provided in the user prompt
+- Be specific, insightful, and philosophically grounded in your analysis`
           },
           {
             role: "user",
@@ -63,7 +67,7 @@ Be specific, insightful, and philosophically grounded in your analysis.`
           }
         ],
         temperature: 0.7,
-        max_tokens: 1000,
+        max_tokens: 7000,
       });
 
       const response = completion.choices[0]?.message?.content;
@@ -95,6 +99,7 @@ Be specific, insightful, and philosophically grounded in your analysis.`
         phronesisLevel: characterData.phronesisLevel || 'medium',
         phronesisTrajectory: characterData.phronesisTrajectory || 'constant',
         telos: characterData.telos || 'Unknown purpose',
+        universe: characterData.universe || 'Unknown universe',
         greatestWin: characterData.greatestWin || 'Unknown victory',
         greatestDefeat: characterData.greatestDefeat || 'Unknown defeat',
         tags: characterData.tags || ['unknown'],
@@ -117,19 +122,71 @@ Be specific, insightful, and philosophically grounded in your analysis.`
   private buildAnalysisPrompt(characterName: string): string {
     return `Analyze the character "${characterName}" through an Aristotelian philosophical lens. Provide:
 
-1. **Hamartia** (tragic flaw): Their fundamental character flaw or error in judgment
-2. **Context**: The specific situation or environment where this flaw causes the most problems
-3. **Phronesis Level**: Their practical wisdom level (low/medium/high) 
-4. **Phronesis Trajectory**: How their wisdom changes (increasing/decreasing/constant)
+1. **Hamartia** (tragic flaw): Their fundamental character flaw or error in judgment. It should be at most two words, with a greek translation in the latin alphabet. Preferrably something related to Aristotles virtues. Preferabbly the exccess of deficienty of one of these 15 virtues. 
+
+Courage
+
+Temperance
+
+Liberality
+
+Magnificence
+
+Magnanimity
+
+Proper Ambition (Right Pride)
+
+Patience (Good Temper)
+
+Truthfulness
+
+Wittiness
+
+Friendliness
+
+Practical Wisdom
+
+Theoretical Wisdom
+
+Understanding
+
+Scientific Knowledge
+
+Art / Craft (Skill)
+
+2. **Context**: The specific situation or environment where this flaw causes the most problems. It should be at most two words with a greek translation in the latin alphabet.
+3. **Phronesis Level**: Their practical wisdom level in one word (low/medium/high)
+4. **Phronesis Trajectory**: How their wisdom changes in one word (increasing/decreasing/constant)
 5. **Telos**: Their ultimate purpose, goal, or what they're striving toward
-6. **Greatest Win**: A specific victory where their traits served them well
-7. **Greatest Defeat**: A specific failure directly caused by their hamartia
-8. **Tags**: 3-5 categorization tags (e.g., anime, literature, history, science etc.)
-9. **Image**: Suggest a http URL of an image of this character. Please ensure the URL is accessible and relevant to the character.
+6. **Universe**: The fictional universe, story world, or source material they come from (e.g., "Marvel Universe", "Harry Potter", "Game of Thrones", "  World war 2")
+7. **Greatest Win**: A specific victory where their traits served them well, the response should be around three sentences
+8. **Greatest Defeat**: A specific failure directly caused by their hamartia, the response should be around three sentences
+9. **Tags**: 3-5 categorization tags (e.g., anime, literature, history, science etc.) - THIS FIELD IS MANDATORY AND MUST BE INCLUDED
+
+
+Here is an example response
+
+{
+  "characterName": "Hitler",
+  "hamartia": "Excessive Ambition",
+  "context": "War", 
+  "phronesisLevel": "High",
+  "phronesisTrajectory": "Decreasing",
+  "telos": "Stablish a racially defined totalitarian empire dominated by what he considered the "Aryan" or "Germanic" race.",
+  "universe": "World War 2",
+  "greatestWin": "Hitler's rise to power in Germany exemplified his ability to exploit the economic and political instability of the Weimar Republic. Through his charismatic oratory and manipulative propaganda, he successfully consolidated power and garnered mass support.",
+  "greatestDefeat": "His hubris led to the disastrous decision to invade the Soviet Union, underestimating both the resilience of the Russian people and the logistical challenges posed by the harsh winter. This miscalculation not only marked the turning point of the war but also significantly weakened his military position.",
+  "tags": ["War", "History"]
+}
+
 
 Be specific and insightful. Focus on how their hamartia manifests in their context and how it leads to both their greatest triumph and downfall.
 
-Return your analysis as a JSON object with the exact structure I specified.`;
+CRITICAL: Your response must follow the EXACT same format, structure, length, and style as the Hitler example above. Match the conciseness of "Excessive Ambition" for hamartia, "War" for context, the length of the telos statement, and especially the three-sentence format for greatestWin and greatestDefeat.
+
+MANDATORY: Include the "tags" field with exactly 3-5 relevant categorization tags. DO NOT omit this field.
+
+Return your analysis as a JSON object with the exact structure I specified, formatted identically to the template.`;
   }
 
   /**
@@ -144,6 +201,7 @@ Return your analysis as a JSON object with the exact structure I specified.`;
       phronesisLevel: 'medium',
       phronesisTrajectory: 'constant',
       telos: 'Unable to determine purpose',
+      universe: 'Unknown universe',
       greatestWin: 'Analysis incomplete',
       greatestDefeat: `AI analysis failed: ${error.message || 'Unknown error'}`,
       tags: ['error', 'incomplete-analysis'],
@@ -235,7 +293,8 @@ async function example() {
     console.log(`🌍 Context: ${hamlet.context}`);
     console.log(`🧠 Phronesis: ${hamlet.phronesisLevel} (${hamlet.phronesisTrajectory})`);
     console.log(`🎯 Telos: ${hamlet.telos}`);
-    console.log(`🏆 Greatest Win: ${hamlet.greatestWin}`);
+    console.log(`� Universe: ${hamlet.universe}`);
+    console.log(`�🏆 Greatest Win: ${hamlet.greatestWin}`);
     console.log(`💀 Greatest Defeat: ${hamlet.greatestDefeat}`);
     console.log(`🏷️ Tags: ${hamlet.tags.join(', ')}`);
 

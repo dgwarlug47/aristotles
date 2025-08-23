@@ -8,7 +8,10 @@
 import CharacterAnalyzer from './character-analyzer';
 import CharacterDB from '../DB/dynamodb';
 import { Character } from '../Models/character';
-import {movieCharacters} from './Upstream/movies.js'
+const { TOP_100_LITERARY_CHARACTERS } = require('./Upstream/literature_orthodox.js');
+const { TOP_100_TV_CHARACTERS } = require('./Upstream/series_orthodox.js');
+
+const { movieCharacters } = require('./Upstream/movies.js');
 
 async function testSingleCharacter() {
   console.log('🧪 Testing Single Character Analysis\n');
@@ -31,6 +34,7 @@ async function testSingleCharacter() {
     console.log(`Phronesis Level: ${character.phronesisLevel}`);
     console.log(`Phronesis Trajectory: ${character.phronesisTrajectory}`);
     console.log(`Telos: ${character.telos}`);
+    console.log(`Universe: ${character.universe}`);
     console.log(`Greatest Win: ${character.greatestWin}`);
     console.log(`Greatest Defeat: ${character.greatestDefeat}`);
     console.log(`Tags: ${character.tags.join(', ')}`);
@@ -65,7 +69,7 @@ async function testCharacterSuggestions() {
   }
 }
 
-async function testWithDatabase() {
+async function testWithDatabase(characterName: string) {
   console.log('\n💾 Testing AI + Database Integration\n');
   
   try {
@@ -73,8 +77,8 @@ async function testWithDatabase() {
     const db = new CharacterDB();
     
     // Generate character data with AI
-    const character = await analyzer.analyzeCharacter(movieCharacters[0]);
-    
+    const character = await analyzer.analyzeCharacter(characterName);
+
     if (character) {
       console.log('✅ Character analyzed successfully');
       
@@ -96,19 +100,19 @@ async function testWithDatabase() {
   }
 }
 
+async function addMultipleCharactersToDatabase() {
+  for (const name of TOP_100_TV_CHARACTERS) {
+    console.log("Adding character to database:", name);
+    await testWithDatabase(name);
+
+  }
+}
+
 async function runAllTests() {
-  console.log('🚀 Starting Character Analyzer Tests\n');
-  
-  // Test 1: Single character analysis
-  await testSingleCharacter();
-  
-  // Test 2: Character suggestions  
-  await testCharacterSuggestions();
-  
   // Test 3: Database integration (optional - requires DB setup)
   console.log('\n💡 To test database integration, uncomment the line below and ensure DB is set up');
-  await testWithDatabase();
-  
+  await addMultipleCharactersToDatabase();
+
   console.log('\n✅ All tests completed!');
 }
 
