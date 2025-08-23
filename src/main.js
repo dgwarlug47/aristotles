@@ -59,6 +59,7 @@ class CharacterDatabase {
                 <td>${character.phronesis}</td>
                 <td>${character.phronesisTrajectory}</td>
                 <td>${character.telos || 'Unknown'}</td>
+                <td>${character.universe || 'Unknown'}</td>
             `;
         }
         // Also update the character name in the title
@@ -94,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         phronesis: 'medium',
         phronesisTrajectory: 'decreasing',
         telos: 'tragic revenge',
+        universe: 'Shakespeare\'s Hamlet',
         image: 'https://static.wikia.nocookie.net/characters/images/e/e9/Katara.jpg/revision/latest?cb=20170921222457',
         tags: ['tragedy', 'prince', 'revenge']
     });
@@ -105,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         phronesis: 'low',
         phronesisTrajectory: 'decreasing',
         telos: 'tyrannical rule',
+        universe: 'Shakespeare\'s Macbeth',
         image: 'https://static.wikia.nocookie.net/characters/images/e/e9/Katara.jpg/revision/latest?cb=20170921222457',
         tags: ['tragedy', 'king', 'prophecy']
     });

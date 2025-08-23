@@ -6,6 +6,7 @@ export interface Character {
     phronesisLevel: 'low' | 'medium' | 'high';
     phronesisTrajectory: 'increasing' | 'decreasing' | 'constant';
     telos?: string;
+    universe?: string;
     image?: string;
     tags: string[];
     greatestWin?: string; // Optional field for future use;

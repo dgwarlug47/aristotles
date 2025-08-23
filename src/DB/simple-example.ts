@@ -15,12 +15,14 @@ async function simpleExample() {
 
     // 2. Write (equivalent to table.put_item)
     const hamlet: Character = {
+      id: 'hamlet-001',
       characterName: 'Hamlet',
       hamartia: 'indecision',
       context: 'Danish prince troubled by his father\'s ghost',
       phronesisLevel: 'high',
       phronesisTrajectory: 'decreasing',
       telos: 'Avenge his father and restore order',
+      universe: 'Shakespeare\'s Hamlet',
       greatestWin: 'Successfully exposed Claudius\'s guilt through the play-within-a-play',
       greatestDefeat: 'His indecision led to the deaths of Polonius, Ophelia, Gertrude, and ultimately himself',
       tags: ['tragedy', 'revenge', 'melancholy', 'danish'],
