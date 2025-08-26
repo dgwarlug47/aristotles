@@ -122,35 +122,65 @@ CRITICAL REQUIREMENTS:
   private buildAnalysisPrompt(characterName: string): string {
     return `Analyze the character "${characterName}" through an Aristotelian philosophical lens. Provide:
 
-1. **Hamartia** (tragic flaw): Their fundamental character flaw or error in judgment. It should be at most two words, with a greek translation in the latin alphabet. Preferrably something related to Aristotles virtues. Preferabbly the exccess of deficienty of one of these 15 virtues. 
+1. **Hamartia** (tragic flaw): Their fundamental character flaw or error in judgment. It should be at most two english words
 
-Courage
+CRITICAL: It has to be the excess of deficiency of one of these 14 virtues. The hamartia can only be one of these 28 options.
 
-Temperance
+'Courage deficiency'
 
-Liberality
+'Courage excess'
 
-Magnificence
+'Temperance deficiency'
 
-Magnanimity
+'Temperance excess'
 
-Proper Ambition (Right Pride)
+'Liberality deficiency'
 
-Patience (Good Temper)
+'Liberality excess'
 
-Truthfulness
+'Magnificence deficiency'
 
-Wittiness
+'Magnificence excess'
 
-Friendliness
+'Magnanimity deficiency'
 
-Practical Wisdom
+'Magnanimity excess'
 
-Theoretical Wisdom
+'Ambition deficiency'
 
-Understanding
+'Ambition excess'
 
-Scientific Knowledge
+'Patience deficiency'
+
+'Patience excess'
+
+'Truthfulness deficiency'
+
+'Truthfulness excess'
+
+'Wittiness deficiency'
+
+'Wittiness excess'
+
+'Friendliness deficiency'
+
+'Friendliness excess'
+
+'Theoretical Wisdom deficiency'
+
+'Theoretical Wisdom excess'
+
+'Intuition deficiency'
+
+'Intuition excess'
+
+'Episteme deficiency'
+
+'Episteme excess'
+
+'Techne deficiency'
+
+'Techne excess'
 
 Art / Craft (Skill)
 
@@ -179,6 +209,19 @@ Here is an example response
   "tags": ["War", "History"]
 }
 
+{
+  "characterName": "Achilles",
+  "hamartia": "Patience Deficiency",
+  "context": "Trojan War conflict with Agamemnon and the Trojans",
+  "phronesisLevel": "Medium",
+  "phronesisTrajectory": "Constant",
+  "telos": "Sought eternal glory and honor on the battlefield, but his inability to temper anger diverted him from the common good of his army.",
+  "universe": "Greek Mythology (Homer's Iliad)",
+  "greatestWin": "Defeated Hector in single combat, avenging Patroclus and securing his place as the greatest warrior of the Greeks.",
+  "greatestDefeat": "His rage-driven refusal to fight after Agamemnon's insult cost many Greek lives, and his wrathful excess led to desecrating Hector’s body — staining his honor.",
+  "tags": ["Mythology", "Tragedy"]
+}
+
 
 Be specific and insightful. Focus on how their hamartia manifests in their context and how it leads to both their greatest triumph and downfall.
 
@@ -187,7 +230,8 @@ CRITICAL: Your response must follow the EXACT same format, structure, length, an
 MANDATORY: Include the "tags" field with exactly 3-5 relevant categorization tags. DO NOT omit this field.
 
 Return your analysis as a JSON object with the exact structure I specified, formatted identically to the template.`;
-  }
+
+}
 
   /**
    * Create a fallback character when OpenAI analysis fails

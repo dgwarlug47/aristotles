@@ -10,6 +10,7 @@ import CharacterDB from '../DB/dynamodb';
 import { Character } from '../Models/character';
 const { TOP_100_LITERARY_CHARACTERS } = require('./Upstream/literature_orthodox.js');
 const { TOP_100_TV_CHARACTERS } = require('./Upstream/series_orthodox.js');
+const { TOP_100_GREATEST_ARTISTS } = require('./Upstream/artists_orthodox.js');
 
 const { movieCharacters } = require('./Upstream/movies.js');
 
@@ -101,7 +102,7 @@ async function testWithDatabase(characterName: string) {
 }
 
 async function addMultipleCharactersToDatabase() {
-  for (const name of TOP_100_TV_CHARACTERS) {
+  for (const name of TOP_100_GREATEST_ARTISTS) {
     console.log("Adding character to database:", name);
     await testWithDatabase(name);
 
